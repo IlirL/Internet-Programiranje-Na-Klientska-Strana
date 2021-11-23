@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        var phone_number = prompt("Enter phone number");
+        phone_number = phone_number.slice(0, 3) + '/' + phone_number.slice(3,6) + '-' + phone_number.slice(6);
+        var operator = "";
+        var firstThreeNumbers = phone_number.slice(0,3);
+        if(firstThreeNumbers === '070' || firstThreeNumbers==='071' || firstThreeNumbers === '072')
+            operator = "T-mobile";
+        else if(firstThreeNumbers ==='075' || firstThreeNumbers === '076')
+            operator = "One";
+        else if(firstThreeNumbers === '077' || firstThreeNumbers === '078')
+        {
+            operator = "Vip";
+        }
+        alert(phone_number +"\n"+ operator);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

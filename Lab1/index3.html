@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        var s = prompt("Vnesi go stringot");
+        var arr = s.split(" ");
+        var max = -1;
+        var maxIndex = 0;
+        for(var i = 0; i<arr.length; i++)
+        {
+            if(max < arr[i].length)
+            {
+                max = arr[i].length;
+                maxIndex = i;
+            }
+        }
+        alert(arr[maxIndex]);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

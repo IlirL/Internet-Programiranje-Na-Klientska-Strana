@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        var a = prompt("Vnesi tricifren broj");
+        a = parseInt(a);
+        if(!isNaN(a)){
+            if(a>=100 && a<=999)
+            {
+                alert(isPalindrom(a));
+            }
+            else{
+                alert("The number that you gave is not a tricifren number");
+            }
+        }
+        else {
+            alert("Incorrect input");
+        }
+        function isPalindrom(x){
+                var reverse = 0;
+                var copy = parseInt(x);
+                // console.log(reverse);
+                while(copy>0)
+                {
+                    reverse = reverse*10 + copy%10;
+                    copy = Math.floor(copy/10);
+                    // console.log(copy);
+                }
+                // console.log("reverse is " + reverse + " of number " + x)
+
+                if(reverse === x)
+                {
+                    return "It is palindrom";
+                }
+                else
+                    return "It is not palindrom";
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
