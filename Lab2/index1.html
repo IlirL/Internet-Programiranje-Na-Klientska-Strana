@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset=utf-8 />
+<title>Title</title>
+
+<script>
+    function removecolor(){
+        var selectedOption = document.getElementById("colorSelect").value;
+        var optionToRemove = document.getElementById("colorSelect").getElementsByTagName("option");
+        for(var i = 0; i<optionToRemove.length; i++)
+        {
+            if(optionToRemove[i].value === selectedOption)
+            {
+                optionToRemove = optionToRemove[i];
+            }
+        }
+        document.getElementById("colorSelect").removeChild(optionToRemove);
+        console.log(optionToRemove);
+    }
+</script>
+</head>
+<body><form>
+<select id="colorSelect">
+    <option>Red</option>
+    <option>Green</option>
+    <option>White</option>
+    <option>Black</option>
+</select>
+<input type="button" onclick="removecolor()" value="Select and Remove"><br></form>
+</body>
+</html>
