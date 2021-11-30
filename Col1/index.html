@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        #smetki{
+            display: grid;
+            grid-template-columns: auto auto auto;
+        }
+    </style>
+    
+    <script>
+       function checkTablica(tablica){
+           var firstTwoLetters = tablica.slice(0, 2);
+           firstTwoLetters = firstTwoLetters.toLowerCase();
+           if(tablica.length > 10)
+            return false;
+
+            if(tablica.charAt(2) !=='-' || tablica.charAt(7) !== '-')
+            {
+                return false;
+            }
+
+           if(firstTwoLetters.charAt(0) <='z' && firstTwoLetters.charAt(1) >='a')
+           {
+               //good
+               if(isNaN(parseInt(tablica.slice(3, 7))))
+                return false;
+
+                //last two letters
+                var lastTwo = tablica.slice(8);
+                lastTwo = lastTwo.toLowerCase();
+                if(lastTwo.charAt(0) <='z' && lastTwo.charAt(1) >='a')
+                    return true;
+           }
+           else
+           {
+               return false;
+           }
+        }
+
+        function isTablicaZlaten(tablica)
+        {
+            if(tablica.charAt(3) === tablica.charAt(4) && tablica.charAt(3) ===  tablica.charAt(5) &&
+            tablica.charAt(3) ===  tablica.charAt(6))
+                return true;
+            
+                return false;
+        }
+       
+        function priceCalculation(tablica, soobrakaj)
+        {
+            if(!tablica || !checkTablica(tablica))
+                return 0;
+
+            var price = 3000;
+            if(isTablicaZlaten(tablica))
+                price = parseInt(price) + 1000;
+            
+            if(soobrakaj === 'da')
+            {
+                price = parseInt(price)+500;
+            }
+            return price;
+        }
+
+
+        
+       function generateSmetka()
+        {
+            // console.log(checkTablica("A/B-1234-QW"));
+            var ime = document.getElementById("ime").value;
+            var prezime = document.getElementById('prezime').value;
+            var tablica = document.getElementById('tablica').value;
+            var godini = document.getElementById("godini").value;
+            var soobrakaj = document.getElementsByName("nezgoda");
+            var smetki = document.getElementById("smetki");
+           var price;
+           var boja = parseInt(godini) > 30 ? "red" : "green";
+            // console.log(soobrakaj[0].checked);
+            if(soobrakaj[0].checked)
+                    {
+                        soobrakaj  = "Има";
+                        price = priceCalculation(tablica, "da");
+                    }
+                        else
+                {
+                    soobrakaj = "Нема";
+                    price = priceCalculation(tablica, "ne");
+                }
+            console.log(soobrakaj);
+            
+            //check tablica
+
+            if(ime && prezime && tablica && godini && soobrakaj && smetki && checkTablica(tablica))
+            {
+            //we got the values
+            //generate the div
+
+                
+
+            var div = document.createElement("div");
+            var h3 = document.createElement("h3");
+            var buttonPlati = document.createElement("button");
+            var buttonIzbrisi = document.createElement("button");
+                buttonPlati.innerHTML = "Plati";
+                buttonIzbrisi.innerHTML = "Izbrisi";
+            h3.innerHTML = ime;
+            div.appendChild(h3);
+
+            var h3 = document.createElement("h3");
+            h3.innerHTML = prezime;
+            div.appendChild(h3);
+
+            var h3 = document.createElement("h3");
+            h3.innerHTML = "Сообраќајки: " + soobrakaj;
+            div.appendChild(h3);
+
+            var h3 = document.createElement("h3");
+            h3.innerHTML = "Старост на возило: " + godini;
+            div.appendChild(h3);
+
+            var h3 = document.createElement("h3");
+            h3.innerHTML = price.toString();
+            div.appendChild(h3);
+
+            div.style.backgroundColor = boja;
+            div.style.margin = "5px";
+            var called = false;
+            buttonIzbrisi.addEventListener("click", (event)=>{
+                    smetki.removeChild(event.target.parentElement);
+                })
+                buttonPlati.addEventListener("click", ()=>{
+                    buttonPlati.style.color = 'gray';
+                    buttonIzbrisi.style.color = 'gray';
+                    buttonIzbrisi.removeEventListener("click", ()=>{
+
+                    }, true);
+                    called = true;
+                    // buttonIzbrisi.setAttribute("onclick", "");
+                })
+
+                div.appendChild(buttonPlati);
+                div.appendChild(buttonIzbrisi);
+
+            smetki.appendChild(div);
+            console.log(smetki);
+            }
+            else if(checkTablica(tablica))
+            {
+                alert("You didnt fill all the inputs");
+            }
+            else
+            {
+                alert("Your Registarska Tablica is not from Macedonia")
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    <center><h1>Осигурување на возила</h1></center>
+    <div class = "label-input"><label for="ime">Име</label><input type="text" id = "ime"></div>
+    <div class = "label-input"><label for="prezime">Презиме</label><input type="text" id = "prezime"></div>
+    <div class = "label-input"><label for="tablica">Регистарска таблица</label><input type="text" id = "tablica"></div>
+    <div class = "label-input"><label for="godini">Години на старост</label><input type="text" id = "godini"></div>
+    <div class = "label-input"><label for="">Сообраќајна незгода</label><input type="radio" name ="nezgoda" value = "da">Да <input type="radio" name = "nezgoda" value = "ne">Не</div>
+    <button onclick="generateSmetka()">Генерирај Сметка</button>
+
+    <h1>Сметки</h1>
+    <p>Вкупно сметки за плаќање: <span>0</span></p>
+    <div id = "smetki">
+
+    </div>
+</body>
+</html>
