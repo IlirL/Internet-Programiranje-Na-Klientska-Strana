@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index1.css">
+
+
+    <script>
+            var sum = 0;
+            var students = 0;
+            
+        function importStudent(){
+            var name = document.getElementById("name").value;
+            var index = document.getElementById("index").value;
+            var phone = document.getElementById("phone").value;
+            var grade = document.getElementsByName("grade");
+            var session = document.getElementById("session").value;
+            var tbody = document.getElementsByTagName("tbody")[0];
+            // console.log("ilir")
+            // console.log(name, index, phone, session);
+            for(var i = 0; i<grade.length; i++)
+            {
+                // console.log(grade[i].checked);
+                if(grade[i].checked)
+                    {
+                        grade = grade[i].value;
+                        break;
+                    }
+            }
+            // console.log(grade)
+            phone = phone.slice(0, 3) + "/" + phone.slice(3, 6) + "-" + phone.slice(6);
+             if(name && index && phone &&grade && session)
+             {
+
+               
+            var tr = document.createElement('tr');
+            
+            var td = document.createElement('td');
+            td.innerHTML = name;
+            tr.appendChild(td);
+            
+            var td = document.createElement('td');
+            td.innerHTML = index;
+            tr.appendChild(td);
+            
+            var td = document.createElement('td');
+            td.innerHTML = phone;
+            tr.appendChild(td);
+
+
+            var td = document.createElement('td');
+            td.innerHTML = grade;
+            sum+=parseInt(grade);
+            students++;
+            
+            tr.appendChild(td);
+
+            var td = document.createElement('td');
+            td.innerHTML = session;
+            tr.appendChild(td);
+
+            
+
+            var confirmButton = document.createElement("button");
+            confirmButton.innerHTML = "Confirm";
+            var revertButton = document.createElement("button");
+            revertButton.innerHTML = "Revert";
+            // confirmButton.setAttribute("onclick", "confirmFunction(this)")
+            var calledFunction = false;
+            confirmButton.addEventListener("click", ()=>{
+                tr.style.backgroundColor = 'green';
+                confirmButton.style.color = "gray";
+                revertButton.style.color = "gray";
+                calledFunction = true;
+            }, {once:true}) 
+           
+            revertButton.addEventListener("click", ()=>{
+                if(!calledFunction){
+                    var ul = document.getElementsByTagName("ul")[0];
+                    var li = document.createElement("li");
+                    var s = index + " - " + grade;
+                    li.innerHTML = s;
+                    ul.appendChild(li);
+                    tbody.removeChild(tr);
+                }
+            })
+            tr.appendChild(confirmButton);
+            tr.appendChild(revertButton);
+
+            
+
+            
+           tbody.appendChild(tr);
+           var span = document.getElementsByTagName("span")[0];
+           span.innerHTML = (sum/students).toFixed(2);
+           
+            // console.log(tbody);
+            console.log(span);
+        } 
+        else
+            alert("fill everything");
+        }
+    </script>
+
+</head>
+<body>
+   <div id = "details"> 
+    <h2>
+        Details
+    </h2>
+    <form action="">
+    <div><label for="name">Name</label> <input type="text" name = "name" id = "name"></div>
+    <div><label for="index">Index</label> <input type="text" name = "index" id = "index"></div>
+    <div><label for="phone">Phone</label> <input type="text" name = "phone" id = "phone"></div>
+    <div>   
+        <label for="">Grade</label>
+        <input type="radio" id = "radioFor5" value="5"  name = "grade"><label for="radioFor5">5</label>
+        <input type="radio" id = "radioFor6" value = "6" name = "grade"><label for="radioFor6">6</label>
+        <input type="radio" id = "radioFor7" value = "7" name = "grade"><label for="radioFor7">7</label>
+        <input type="radio" id = "radioFor8" value = "8" name = "grade"><label for="radioFor8">8</label>
+        <input type="radio" id = "radioFor9" value = "9" name = "grade"><label for="radioFor9">9</label>
+        <!-- <input type="radio" name = "radioFor6" value = "6"><label for="radioFor6">6</label> -->
+    </div>
+    <div>
+        <label for="">Session</label>
+        <Select id = "session">
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+        </Select>
+    </div>
+
+    <button type = "button" onclick="importStudent()">Import Student</button>
+</form>
+</div>
+
+<div id="revert-history">
+    <h2>Revert History</h2>
+    <ul></ul>
+</div>
+
+<div id = "table">
+    <h1>Students (average grade: <span>0</span>)</h1>
+    <table >
+        <thead>
+           <tr>
+                <th>Name</th>
+                <th>Index</th>
+                <th>Phone</th>
+                <th>Grade</th>
+                <th>Session</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" id = "number" >
+    <button onclick = "shiftLeft()"><</button>
+    <button onclick = "shiftRight()">></button>
+    <button onclick = "convert()">CONVERT</button>
+    <button onclick = "store()">Store</button>
+    <button onclick = "check()">Check</button> <br>
+    <span id = "sovrsen"></span>
+    
+    <ul>
+
+    </ul>
+    <script>
+        function shiftLeft(){
+            var number = document.getElementById("number").value;
+            if(!number)
+                alert('Enter a number!');
+            else{
+                number = number.slice(2) + number.slice(0, 2);
+                document.getElementById("number").value = number;
+            }
+        }
+
+        function shiftRight(){
+            var number = document.getElementById("number").value;
+            if(!number)
+                alert('Enter a number!');
+            else{
+                number = number.slice(number.length - 2) + number.slice(0, number.length - 2);
+                document.getElementById("number").value = number;
+            }
+        }
+
+        function convert()
+        {
+            var number = document.getElementById("number").value;
+            var copy = "";
+
+            for(var i = 0; i<number.length; i++)
+            {
+               var digit = parseInt(number[i]);
+               if(digit === 0 || digit === 1)
+                digit = 10 - 2;
+               else
+                digit-=2;
+                
+                copy+=digit.toString();
+            }
+            
+            document.getElementById("number").value = copy;
+        }
+
+        function check(){
+            var number = document.getElementById("number").value;
+            var temp = 3;
+            for(var i = 0; i<number.length; i++)
+            {
+                if(number[i] === '0' || number[i] ==='3' || number[i] === '6' || number[i] === '9')
+                {
+                    temp--;
+                    if(temp === 0)
+                        break;
+                }
+            }
+            if(temp === 0)
+                {
+                    document.getElementById("sovrsen").innerHTML = "Sovrsen"
+                }
+                else{
+                    document.getElementById("sovrsen").innerHTML = "Nesovrsen"
+                }
+        }
+
+        function store(){
+            var number = document.getElementById("number").value;
+            var li = document.createElement("li");
+            li.innerHTML = number;
+            document.getElementsByTagName("ul")[0].appendChild(li);
+            document.getElementById("number").value = "";
+            document.getElementById("sovrsen").innerHTML = "";
+        }
+    </script>
+
+</body>
+</html>
