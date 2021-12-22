@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var literature = new Array();
+        var book ={
+            title: "title1",
+            author:"author1",
+            alreadyRead:false
+        };
+
+        literature.push(book);
+        book = {
+            title: "title2",
+            author:"author2",
+            alreadyRead:true
+        }
+
+        literature.push(book);
+
+        for(var k = 0; k<literature.length; k++)
+        {
+            var i = literature[k];
+            if(i.alreadyRead)
+                console.log("You already read book " + i.title + " By author " + i.author);
+
+            else
+                console.log("You have to read book " + i.title + " By author "+ i.author );
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <h1>Promena Na Pozadina</h1>
+    <div class="radio_inputs">
+            <input type="radio" name = "choice" value = "color"> <label>Color</label>
+         <input type="radio" name = "choice" value = "image"> <label>Image</label>
+    </div>
+    <div class = "value_input">
+        <label for="value">Value:</label>
+        <input type="text" id = "value">
+    </div>
+   <div> <button onclick = "handleClick()">Promeni</button></div>
+
+   <script>
+       function handleClick(){
+           var radio_selected =[...document.getElementsByClassName("radio_inputs")[0]
+                                        .getElementsByTagName("input")]
+                                        .filter(singleInput => singleInput.checked == true)[0].value;
+            // console.log(radio_selected);
+
+            if(radio_selected == 'color')
+            {
+                var background_color = document.getElementById('value').value;
+                // console.log(background_color);
+                document.getElementsByTagName("body")[0].style.backgroundColor = background_color;
+            }
+            else if(radio_selected == "image")
+            {
+                var background_image = document.getElementById('value').value;
+
+                document.getElementsByTagName("body")[0].style.background = `url(${background_image}) no-repeat`;
+                document.getElementsByTagName("body")[0].style.backgroundSize = `cover`;
+            }
+       }
+   </script>
+</body>
+</html>

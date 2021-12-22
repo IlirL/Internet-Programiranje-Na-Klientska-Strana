@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        Forma za vnesuvanje oceni
+    </h1>
+    <form style = "display: flex; flex-direction: column;">
+   <div class = "singleLabel"> <label for="ime">Ime:</label> <input type="text" name = "ime" id = "ime"></div>
+   <div class = "singleLabel">  <label for="prezime">Prezime:</label> <input type="text" name = "prezime" id = "prezime"></div>
+    <div class = "singleLabel">  <label for="indeks">Indeks:</label> <input type="text" name = "indeks" id = "indeks"></div>
+        <div class = "singleLabel">  <label for="predmet">Predmet:</label> <input type="text" name = "predmet" id = "predmet"></div>
+    
+            <div class = "singleLabel"> <label >Ocena</label>
+    <Select id = "ocena">
+        <option value="5">5(Pet)</option>
+        <option value="4">4(Cetiri)</option>
+        <option value="3">3(Tri)</option>
+        <option value="2">2(Dve)</option>
+        <option value="1">1(Eden)</option>
+    </Select>
+</div>
+   <div><button type = "button" onclick = "addStudent()">Vnesi</button></div> 
+</form>
+
+    <table id = "result" border="1">
+        <thead>    
+            <tr>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Indeks</th>
+                <th>Predmet</th>
+                <th>Ocena</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <script>
+        function addStudent()
+        {
+            var ime = document.getElementById("ime");
+            var prezime = document.getElementById("prezime");
+            var indeks = document.getElementById("indeks");
+            var predmet = document.getElementById("predmet");
+            var ocena =[...document.getElementById("ocena").getElementsByTagName("option")]
+            .filter(singleOption => singleOption.selected == true)[0].innerText;
+
+            console.log(ime, prezime, indeks, predmet, ocena);
+
+            var row = document.createElement("tr");
+            var td = document.createElement("td");
+            td.innerText = ime.value;
+            row.appendChild(td);
+            td = document.createElement("td");
+            td.innerText = prezime.value;
+            row.appendChild(td);
+            td = document.createElement("td");
+            td.innerText = indeks.value;
+            row.appendChild(td);
+            td = document.createElement("td");
+            td.innerText = predmet.value;
+            row.appendChild(td);
+            td = document.createElement("td");
+            td.innerText = ocena;
+            row.appendChild(td);
+
+            document.getElementsByTagName("tbody")[0].appendChild(row);
+
+            // ocena.innerText = "";
+            // predmet.innerHTML = "";
+            // indeks.innerHTML ="";
+            // prezime.innerHTML = "";
+            // ime.innerHTML = "";
+            document.getElementById("ime").value = "";
+            document.getElementById("prezime").value = "";
+            document.getElementById("indeks").value = "";
+            document.getElementById("predmet").value = "";
+            document.getElementById("ocena").getElementsByTagName("option")[0].selected = true;
+        }
+    </script>
+
+</body>
+</html>

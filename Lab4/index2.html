@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+    <div class = "singleLabel">
+        <label for="items">Items:</label>
+        <input type="text" name = "items" id = "items">
+    </div>
+
+    <div class = "singleLabel">
+        <label >Type:</label>
+        <Select id = "select">
+            <option value="0">Radio Button</option>
+            <option value="1">Check Box</option>
+        </Select>
+    </div>
+
+    <div id = "result">
+
+    </div>
+
+    <div class="button"><button type = "button" onclick = "prikazi()">Prikazi</button></div>
+</form>
+
+<script>
+    function prikazi(){
+        var items = document.getElementById("items").value.split(", ");
+        
+        console.log();
+        var select = [...document.getElementById("select").getElementsByTagName("option")]
+        .filter(singleOption => singleOption.selected == true)[0].value;
+
+        if(select == 0)
+        {
+            //radio button
+            for(var i = 0; i<items.length; i++)
+            {
+                // var text = `<input type = "radio" name = ${items[i]}/> <label for = "${items[i]}">${items[i]}</lelabel>`;
+
+                // document.getElementById('result').append(doc);
+
+                var input = document.createElement("input");
+                input.setAttribute("type", "radio");
+                input.setAttribute("name", items);
+                input.setAttribute("id", items[i]);
+
+                var label = document.createElement("label");
+                label.innerHTML = items[i];
+                label.setAttribute("for", items[i]);
+
+                document.getElementById("result").appendChild(input);
+                document.getElementById("result").appendChild(label);
+            }
+            var br = document.createElement("br");
+            document.getElementById("result").appendChild(br);
+        }
+
+        else if(select ==1)
+        {
+            //radio button
+            for(var i = 0; i<items.length; i++)
+            {
+                // var text = `<input type = "radio" name = ${items[i]}/> <label for = "${items[i]}">${items[i]}</lelabel>`;
+
+                // document.getElementById('result').append(doc);
+
+                var input = document.createElement("input");
+                input.setAttribute("type", "checkbox");
+                input.setAttribute("name", items);
+                input.setAttribute("id", items[i]);
+
+                var label = document.createElement("label");
+                label.innerHTML = items[i];
+                label.setAttribute("for", items[i]);
+
+                document.getElementById("result").appendChild(input);
+                document.getElementById("result").appendChild(label);
+            }
+            var br = document.createElement("br");
+            document.getElementById("result").appendChild(br);
+        }
+
+    }
+</script>
+</body>
+</html>
