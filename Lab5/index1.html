@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<head>
+    <script>
+    </script>
+</head>
+
+<body>
+    <h1>Калкулатор</h1>
+    <div>
+        <div style="text-align:left; float:left">
+            <p>а <input id="a" style="width:15px" />
+                b <input id="b" style="width:15px" /></p>
+            <p>
+                <input id="plus" type="radio" name="oper" checked>a+b
+                <input id="minus" type="radio" name="oper">a-b
+                <input id="mnoz" type="radio" name="oper">a*b
+                <input id="del" type="radio" name="oper">a/b
+                <br>
+                <input id="sin" type="radio" name="oper">sin(a)
+                <input id="cos" type="radio" name="oper">cos(a)
+                <input id="tg" type="radio" name="oper">tg(a)
+                <br>
+                <input id="cel" type="radio" name="oper">[a]
+                <input id="stepen" type="radio" name="oper">a<sup>b</sup>
+                <input id="koren" type="radio" name="oper">&radic;<span style="text-decoration:
+overline">a</span>
+            </p>
+            <button onclick="presmetaj()">Пресметај</button>
+            <p id="rezultat"></p>
+        </div>
+    </div>
+    <br />
+
+    <script>
+        
+        var presmetaj = () => {
+            var input1 = document.getElementById("a").value;
+          var input2 = document.getElementById("b").value;
+          input1 = parseFloat(input1);
+          input2 = parseFloat(input2);
+
+          var checkedRadioButton = document.getElementsByName("oper"); //array of radio buttons
+        //   console.log(checkedRadioButton);
+            for(var i = 0; i<checkedRadioButton.length; i++)
+            {
+                if(checkedRadioButton[i].checked)
+                    {
+                        checkedRadioButton = checkedRadioButton[i];
+                        break;
+                    }
+            }
+            checkedRadioButton = checkedRadioButton.id;
+            console.log(checkedRadioButton);
+            
+            var result = 0;
+            if(checkedRadioButton === "plus")
+            {
+                result = input1 + input2;
+            }
+            else    if(checkedRadioButton === "minus"){
+                result = input1 - input2;
+            }
+            else   if(checkedRadioButton === "mnoz"){
+                result = input1 * input2;
+            }
+            else    if(checkedRadioButton === "del"){
+                result = input1 / input2;
+            }
+            else    if(checkedRadioButton === "sin")
+            {
+                result = Math.sin(input1).toFixed(2);
+            }
+            else    if(checkedRadioButton === "cos")
+            {
+                result = Math.cos(input1).toFixed(2);
+            }
+            else    if(checkedRadioButton === "tg")
+            {
+                result = Math.tan(input1).toFixed(2);
+            }
+            else    if(checkedRadioButton === "cel")
+            {
+                result = Math.floor(input1);
+            }
+            else    if(checkedRadioButton === "stepen")
+            {
+                result = Math.pow(input1, input2).toFixed(2);
+            }
+            else    if(checkedRadioButton === "koren")
+            {
+                    result = Math.sqrt(input1).toFixed(2);
+            }
+
+            var showText = document.getElementById("rezultat");
+            var br = document.createElement("br");
+            showText.appendChild(br);
+            showText.append(result);
+
+        }
+  
+    </script>
+</body>
+
+</html>

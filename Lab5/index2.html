@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <div style="text-align:right; float:left">
+            <label id="obid">Обиди 0</label>
+            <p>Погодок: <input id="guess" style="width:150px" /></p>
+            <button>Погоди</button>
+            <button> Од почеток</button>
+        </div>
+    </div>
+    <br />
+    <div id="prikaz" style="clear: both">
+    </div>
+
+    <script>
+        var NumberOfPogodi;
+        var generatedNumber;
+        $("button").click((button)=>{
+            // console.log(button.target.innerHTML);
+            if(button.target.innerHTML === "Погоди")
+            {
+                // console.log("Clicked on the first button");
+                
+            }
+            else
+            {
+                // console.log("second button");
+            }
+        })
+          var init = ()=>{
+            NumberOfPogodi = 10;
+            generatedNumber = generateNumberFunction();
+            // console.log(generatedNumber +10);
+            document.getElementById
+        }
+        var generateNumberFunction = () =>{
+            return Math.floor(Math.random()*8999) + 1000;
+        }
+        var NumberOfPogodi = 10;
+        var generatedNumber = generateNumberFunction();
+
+        var pogodi = ()=>{
+            NumberOfPogodi--;
+        }
+    </script>
+</body>
+
+</html>
